@@ -1,3 +1,5 @@
+#example statquast
+
 library(pROC) # install with install.packages("pROC")
 library(randomForest) # install with install.packages("randomForest")
 
@@ -130,3 +132,18 @@ legend("bottomright", legend=c("Logisitic Regression", "Random Forest"), col=c("
 ##
 #######################################
 par(pty = "m")
+
+
+
+#from CRAN
+aSAH %>%
+  filter(gender == "Female") %>%
+  roc(outcome, s100b)
+
+aSAH %>%
+  filter(gender == "Female") %>%
+  roc(outcome, s100b) %>%
+  coords(transpose=FALSE) %>%
+  filter(sensitivity > 0.6,
+         specificity > 0.6)
+

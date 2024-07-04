@@ -4,10 +4,13 @@ names(df)
 table(df$silica_dic)
 df$silica_dic = df$silica
 df$silica_dic[df$silica_dic == 2] = 1
-sensitivity(as.factor(df$silica_dic), as.factor(df$diagyr_dic))
-specificity(as.factor(df$silica_dic), as.factor(df$diagyr_dic))
-negPredValue(as.factor(df$silica_dic), as.factor(df$diagyr_dic))
 confusionMatrix(as.factor(df$silica_dic), as.factor(df$diagyr_dic))
+
+table(df1$silica_dic)
+df1$silica_dic = df1$silica
+df1$silica_dic[df1$silica_dic == 2] = 1
+confusionMatrix(as.factor(df1$silica_dic), as.factor(df1$diagyr_dic))
+
 
 library(pROC) # install with install.packages("pROC")
 library(randomForest) # install with install.packages("randomForest")
