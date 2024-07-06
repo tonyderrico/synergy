@@ -54,6 +54,12 @@ text(0.6, 0.2, paste("AUC =", round(auc_value, 2)), col = "blue", cex = 1.2)
 glm.fit=glm(diagyr_dic ~ asbestos_cum0, family=binomial, data = df)
 predprob = predict(glm.fit, type = 'response') #other option, same
 lines(df$diagyr_dic, glm.fit$fitted.values)
+roc_curve=roc(df$diagyr_dic, glm.fit$fitted.values, plot=TRUE)
+optimal_threshold <- coords(roc_curve, "best", ret = "threshold", best.method = "youden")
+print(paste("Optimal Threshold: ", optimal_threshold))
+abline(v = optimal_threshold, col = "blue", lty = 2)
+summary(roc_curve$thresholds > 0.44)
+summary(glm.fit$fitted.values > 0.44)
 #######################################
 ##
 ## draw ROC and AUC using pROC
