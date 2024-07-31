@@ -16,12 +16,12 @@ library(pROC) # install with install.packages("pROC")
 library(randomForest) # install with install.packages("randomForest")
 
 ## plot the data
-plot(x=df$silica_dic, y=df$diagyr_dic)
+plot(x=df$silica.x, y=df$diagyr_dic)
 
 ## fit a logistic regression to the data...
 glm.fit=glm(diagyr_dic ~ silica_dic, family=binomial, data = df)
 lines(df$diagyr_dic, glm.fit$fitted.values)
-
+summary(glm.fit)
 
 #######################################
 ##

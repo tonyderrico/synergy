@@ -7,20 +7,30 @@ library(randomForest)
 str(syn_all_occ_hist)
 names(syn_all_subjects)
 names(df)
+df$isco
 
 syn_all_subjects$diagyr_dic <- ifelse(is.na(syn_all_subjects$diagyr), 0, 1)
 table(syn_all_subjects$diagyr_dic, syn_all_subjects$farmer)
 df = syn_all_subjects %>% select(subjctid, diagyr_dic, diagyr)
-df = merge(syn_all_occ_hist, syn_all_subjects, by = "subjctid")
+df = merge(df, syn_all_subjects, by = "subjctid")
+synergy.job.history_isco88.2 = synergy.job.history_isco88 %>% select('subjctid',
+                                'isco68','ISCO88', 'year')
+df = merge(syn_all_occ_hist,synergy.job.history_isco88.2, by = c("subjctid",'year'))
+names(syn_all_occ_hist)
+table(syn_all_subjects$diagyr_dic)
+table(syn_all_subjects$sex)
+table(syn_all_subjects$ever_asbestos0)
 
+df = merge(df,ALOHA_ISCO_88_JEM_v2_0, by='ISCO88')
+names(DOM_JEM_isco88_20210629)[1] = 'ISCO88'
 #asbestos - all years
 names(df)
-table(df$asbestos_dic)
-df$asbestos_dic = df$asbestos
+table(df$asbestos.x)
+df$asbestos_dic = df$
 df$asbestos_dic[df$asbestos_dic == 2] = 1
 tb = table(df$asbestos_dic,df$diagyr_dic)
 confusionMatrix(tb)
-hist(df$asbestos_cum0)
+hist(df)
 
 #different test - 1980 SA
 x = df %>% filter(subjctid == '101031034')

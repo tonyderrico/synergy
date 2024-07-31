@@ -2,7 +2,7 @@
 
 names(df)
 table(df$pah_dic)
-df$pah_dic = df$pah
+df$pah_dic = df$pah.y
 df$pah_dic[df$pah_dic == 2] = 1
 confusionMatrix(as.factor(df$pah_dic), as.factor(df$diagyr_dic))
 

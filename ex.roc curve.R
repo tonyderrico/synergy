@@ -1,8 +1,7 @@
-#example statquast
+#example roc curve statquast
 
 library(pROC) # install with install.packages("pROC")
 library(randomForest) # install with install.packages("randomForest")
-
 #######################################
 ##
 ## Generate weight and obesity datasets.
